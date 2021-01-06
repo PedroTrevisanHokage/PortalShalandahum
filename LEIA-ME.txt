@@ -1,0 +1,34 @@
+Tutorial de Uso Ficha Shalandahum
+=================================
+
+** Acessando a Ficha **
+1. Na memsa pasta onde você abriu este arquivo há uma pasta chamada "FICHA SHALANDAHUM", abra-a
+2. Com o navegador de sua preferência, abra o arquivo Ficha.html
+
+** Usando a Ficha **
+- Para fazer testes de características FOR, DES, INT, VIG, SENT e CAR basta clicar acima do campo de descrição que funciona como um botão. Um 10 natural é considerado acerto decisivo (crítico) e nesse ponto não é explosão de dados pois ´é apenas um teste de característica
+- Para habilitar o botão de ataque ao lado de FOR é necessário que sua ARMA 1 seja do tipo "Melee" (corpo-a-corpo). Dessa forma, ao clicar nele o sistema utilizará os atributos da ARMA 1 para calcular o Dano a ser combatido pelo seu oponente
+- Para habilitar o botão de ataque ao lado de DES é necessário que sua ARMA 1 seja do tipo "Distância" . Dessa forma, ao clicar nele o sistema utilizará os atributos da ARMA 1 para calcular o Dano a ser combatido pelo seu oponente
+- O botão de escudo ao lado de FOR é utilizado para realizar uma defesa ativa física, funciona como atalho, e tem o mesmo funcionamento do botão de escudo ao lado da linha da ARMADURA
+- O botão com um hmem segurando escudo com flechas ao lado de DES, é uilizado para realizar uma Defesa Ativa Contra Projéteis, funciona como o atalho, e tem o mesmo funcionamento do botão de um hmem segurando escudo com flechas ao lado da linha da ARMADURA
+- Os pontos de vida MÁXIMOS de seu caracter são calculados automaticamente VIG*10, caso você tenha VIG = 0, sua PV máxima é 10. Ainda é necessário preencher o campo PV atuais, mesmo que você não tenha tomado dano.
+- Os Adwas, dinheiro do jogo, fica posicionado dentro de seu inventário, que pode ser acessado clicando no botão "INVENTÁRIO"
+- Para realizar Defesas Ativas Místicas, é necessário clicar nos botões ao lado de Fé ou ALMA, então inserir o quanto de fé ou alma quer gastar e inserir todos bônus mísitcos cabíveis
+IMPORTANTE: A ficha não soma automaticamente bônus dos itens místicos em defesas mística (além de armadura ou escudo místico) ou ataques místicos
+- há apenas espaço para 5 habilidades, pois em Shalandahum todas as classes DEVEM ter apenas 5 habilidades
+- Para realizar Defesas Físicas Ativas ou Passivas, ou Defesas Passivas Física ou Místicas, deve-se utilizar os botões na linha de Armadura, posicione o mouise acima de cada botão para saber o que cada um fazer
+- Para abrir a lista de magias basta clicar em "LISTA DE MAGIAS" e então um pop-up aparecerá com espaço para 5 magias, não haverá mais espaço pois em Shalandahum um caracter apenas pode ter no máximo 5 magias
+
+** Salvando Dados **
+- Após preencher seua ficha, pode-se clicar em "SALVAR DADOS", ao salvá-los note que um arquivo texto com a seguinte descrição é feita na sua pasta de dwonloads NomeDoSeuPersonagem.txt, dessa forma é só guardar este arquivo.
+IMPORTANTE¹: não modifique as informações do arquivo se não souber JSON
+IMPORTANTE²: se vc ao menos sabe o que é JSON, nem pense em alterar dados desse arquivo
+
+** Carregando dados salvos de um caracter previamente feito**
+- Pode-se carregar os dados de um personagem anteriormente salvo com os seguintes passos
+1. Acesse o arquivo salvo (caso dúvida veja o tópico "Salvando Dados") em sua pasta de downloads, ou no local que guardou o arquivo
+2. abra-o com o programa de sua preferenca. Recomendo o Notepad++
+3. Copie todo o texto
+4. Acesse a ficha de Shalandahum e clique no botão "CARREGAR DADOS". Um pop-up abrirá com um campo para colar as informações copiadas no passo 3
+5. Cole a informação copiada no passo 3 e então clique no botão "Carregar Personagem", porém caso queira desistir do carregamento, basta clicar no botão "Cancelar"
+6. Verifique se as informações foram carregadas corretamente.
