@@ -1,0 +1,73 @@
+{
+	"nome": "string",
+	"etnia": "string",
+	"classe": "string",
+	"ptsDisponiveis": int,
+	"ptsVidaTotais": int,
+	"ptsVidaAtuais": int,
+	"ptsVidaTemp": int,
+	"forca": int,
+	"destreza": int,
+	"inteligencia": int,
+	"vigor": int,
+	"sentidos": int,
+	"carisma": int,
+	"alma": int,
+	"fe": int,
+	"esforco": int,
+	"adwas": "string",
+	"inventario": "string",
+	"armas": [
+		{
+			"tipo": int,
+			"descArma": "string",
+			"danoFisico": int,
+			"danoMistico": int,
+			"durabilidade": int
+		},
+		{
+			"tipo": int,
+			"descArma": "string",
+			"danoFisico": int,
+			"danoMistico": int,
+			"durabilidade": int
+		}
+	],
+	"armaduras": [
+		{
+			"tipo": int,
+			"descArmadura": "string",
+			"blockFisico": int,
+			"blockMistico": int,
+			"durabilidade": int,
+			"penDestreza": int
+		},
+		{
+			"tipo": 2,
+			"descArmadura": "string",
+			"blockFisico": int,
+			"blockMistico": int,
+			"durabilidade": int,
+			"penDestreza": int
+		}
+	],
+	"habilidades": [
+		{
+			"descHabilidade": "string",
+			"nvlHabilidade": int,
+			"infoHabilidade": "string"
+		}
+	],
+	"itensMisticos": [
+		{
+			"descItemMist": "string",
+			"bonusMist": int
+		}
+	],
+	"magias": [
+		{
+			"descMagia": "stringa",
+			"infoMagia": "string"
+		}
+	]
+}
