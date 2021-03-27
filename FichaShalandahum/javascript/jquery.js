@@ -507,45 +507,70 @@ $(document).ready(function () {
 	function testar(input){
 		
 		var testeDe = "";
+		var bonusPenalidade = 0;
+		var msgAdicional = "";
 		
 		if(input == "inputFOR"){
 			testeDe = "Força";
+
+			if($("#inputBonusFOR").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusFOR").val());
+			}
 		}
 		
 		if(input == "inputDES"){
 			testeDe = "Destreza";
+			msgAdicional = "\nAplique manualmente penalidade de Destreza de sua armadura, caso haja.";
+
+			if($("#inputBonusDES").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusDES").val());
+			}
 		}
 		
 		if(input == "inputINT"){
 			testeDe = "Inteligência";
+
+			if($("#inputBonusINT").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusINT").val());
+			}
 		}
 		
 		if(input == "inputVIG"){
 			testeDe = "Vigor";
+
+			if($("#inputBonusVIG").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusVIG").val());
+			}
 		}
 		
 		if(input == "inputSENT"){
 			testeDe = "Sentidos";
+
+			if($("#inputBonusSENT").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusSENT").val());
+			}
 		}
 		
 		if(input == "inputCAR"){
 			testeDe = "Carisma";
+
+			if($("#inputBonusCAR").val() != ""){
+				bonusPenalidade = parseInt($("#inputBonusCAR").val());
+			}
 		}
 		
 		var somar = 0;
 		var d10 = rolarD10(false);
 		
-		if($('#'+input).val() == ""){
-			alert(d10)
-		}else{			
-			var total = d10 + parseInt($('#'+input).val());
-		}
+		var total = d10 + parseInt($('#'+input).val()) + bonusPenalidade;
 		
 		var msg = "";
 		if(d10 == 10)
-			msg += "(Acerto Crítico!) ";
+			msg += "(ACERTO CRÍTICO!) \n";
+		else if (d10 == 1)
+			msg += "(FALHA CRÍTICA!) \n";
 
-		msg += "Total do seu teste de " + testeDe + " é " + total + " (d10: "+d10+" + "+testeDe+": "+$('#'+input).val()+")"
+		msg += "Total do seu teste de " + testeDe + ": " + total + " \n(d10: "+d10+" + "+testeDe+": "+$('#'+input).val()+" + Bônus/Penalidade em "+testeDe+": "+bonusPenalidade+") \n "+msgAdicional;
 		
 		alert(msg);				
 	}
@@ -556,6 +581,7 @@ $(document).ready(function () {
 		var escudo = 0;
 		var d10 = rolarD10(true);
 		var msg = "";
+		var bonus = 0;
 		
 		if(tipo == "F"){
 			if($('#inputBloqCCArmad').val() != ""){
@@ -579,14 +605,16 @@ $(document).ready(function () {
 		var total = d10 + armadura + escudo;
 		
 		if(d10 > 10){
-			msg += "(CRÍTICO) "
+			msg += "(CRÍTICO) \n"
+		}else if(d10 == 1){
+			msg += "(FALHA CRÍTICA) \n"
 		}
 		
 		if(tipo == "F"){
-			msg += "DEFESA PASSIVA FÍSICA: " + total + " (d10: "+d10+" + Bloq. Físico Armadura: "+armadura+"). Aplique bônus se houverem";
+			msg += "DEFESA PASSIVA FÍSICA: " + total + " \n(d10: "+d10+" + Bloq. Físico Armadura: "+armadura+"). \n\nAplique bônus se houverem";
 			
 		}else{
-			msg += "DEFESA PASSIVA MÍSTICA: " + total + " (d10: "+d10+" + Bloq. Místico Armadura: "+armadura+"). Aplique bônus se houverem";
+			msg += "DEFESA PASSIVA MÍSTICA: " + total + " \n(d10: "+d10+" + Bloq. Místico Armadura: "+armadura+"). \n\nAplique bônus se houverem";
 		}			
 		
 		alert(msg);		
@@ -605,7 +633,9 @@ $(document).ready(function () {
 		var d10 = rolarD10(true);		
 		
 		if(d10 > 10){
-			msg = "(CRÍTICO) ";
+			msg = "(CRÍTICO) \n";
+		}else if(d10 == 1){
+			msg = "(FALHA CRÍTICA) \n";
 		}
 		
 		if($('#inputFOR').val() != ""){
@@ -626,17 +656,25 @@ $(document).ready(function () {
 		
 		if(tipoAtk == "MELEE"){
 			
+			if($("#inputBonusFOR").val() != ""){
+				bonus = parseInt($("#inputBonusFOR").val());
+			}
+			
 			total = d10 + For + danoArma + bonus;
 			
-			msg = msg + " Ataque com " +nomeArma+ " (melee): Total: "+total+ " (d10: " +d10+ " + Força: "+For+ " + Dano da Arma: " +danoArma+ "). Aplique bônus se houverem."
+			msg = msg + " Ataque com " +nomeArma+ " (melee): Total: "+total+ "\n (d10: " +d10+ " + Força: "+For+ " + Dano da Arma: " +danoArma+ " + Bônus em For: "+bonus+"). \n\n(Aplique demais bônus manualmente se houverem.)"
 			
 			alert(msg)
 			
 		}else if(tipoAtk == "DIST"){
 			
+			if($("#inputBonusDES").val() != ""){
+				bonus = parseInt($("#inputBonusDES").val());
+			}
+			
 			total = d10 + dest + danoArma + bonus;
 			
-			msg = msg + " Ataque com " +nomeArma+ " (distância): Total: "+total+ " (d10: " +d10+ " + Destreza: "+dest+ " + Dano da Arma: " +danoArma+ "). Aplique bônus se houverem."
+			msg = msg + " Ataque com " +nomeArma+ " (distância): Total: "+total+ "\n (d10: " +d10+ " + Destreza: "+dest+ " + Dano da Arma: " +danoArma+ " + Bônus em Des: "+bonus+"). \n\nAplique demais bônus manualmente se houverem."
 			
 			alert(msg)
 			
@@ -788,13 +826,15 @@ $(document).ready(function () {
 		var forca = 0;
 		var dest = 0;
 		var d10 = rolarD10(true);
-		var bonus = 0; // logo será usado
+		var bonus = 0;
 		var msg = "";
 		var total = 0;
 		var penDest = 0;
 		
 		if(d10 > 10){
-			msg += "(CRÍTICO) ";
+			msg += "(CRÍTICO) \n";
+		}else if (d10 == 1){
+			msg += "(FALHA CRÍTICA) \n";
 		}	
 		
 		if(tipo == "F"){
@@ -823,13 +863,27 @@ $(document).ready(function () {
 			}
 			
 			if(meleeDist == "CC"){
+				
+				if($("#inputBonusFOR").val() !=""){
+					bonus = parseInt($("#inputBonusFOR").val());
+				}
+
 				total = d10 + armadura + escudo + forca + bonus;
 				msg += "DEFESA ATIVA FÍSICA CORPO-A-CORPO:";
-				msg += " Total: "+total+". (d10: " +d10+ " + Força: "+forca+ " + Amadura: "+armadura+" + Escudo: "+escudo+") Aplique bônus se houverem.";				
+				msg += " Total: "+total+". \n(d10: " +d10+ " + Força: "+forca+ " + Amadura: "+armadura+" + Escudo: "+escudo+" + bônus/penalidade em FOR: "+bonus+") \n\nAplique demais bônus manualmente se houverem.";				
 			}else{
+				
+				if($("#inputBonusDES").val() !=""){
+					if(parseInt($("#inputBonusDES").val()) < 0){
+						penDest = penDest + parseInt($("#inputBonusDES").val());	
+					}else{
+						bonus = parseInt($("#inputBonusDES").val());
+					}
+				}
+
 				total = d10 + armadura + escudo + dest + bonus + penDest;
 				msg += "DEFESA ATIVA FÍSICA À DISTÂNCIA:";
-				msg += " Total: "+total+". (d10: " +d10+ " + Destreza: "+dest+ " + Amadura: "+armadura+" + Escudo: "+escudo+ " + Pen. Destreza Total: " +penDest+") Aplique bônus se houverem.";
+				msg += " Total: "+total+". \n(d10: " +d10+ " + Destreza: "+dest+ " + Amadura: "+armadura+" + Escudo: "+escudo+ " + Bônus em DES: "+bonus+" + Pen. Destreza Total: " +penDest+") \n\nAplique demais bônus manualmente se houverem.";
 			}
 
 			alert(msg);
@@ -950,12 +1004,25 @@ $(document).ready(function () {
 			ptsVidaTotais: parseInt($("#inputPV").val()),
 			ptsVidaAtuais: parseInt($("#inputPVAtual").val()),
 			ptsVidaTemp: parseInt($("#inputPVTemp").val()),
+			
 			forca: parseInt($("#inputFOR").val()),
+			forcaBonus: parseInt($("#inputBonusFOR").val()),
+			
 			destreza: parseInt($("#inputDES").val()),
+			destrezaBonus: parseInt($("#inputBonusDES").val()),
+
 			inteligencia: parseInt($("#inputINT").val()),
+			inteligenciaBonus: parseInt($("#inputBonusINT").val()),
+
 			vigor: parseInt($("#inputVIG").val()),
+			vigorBonus: parseInt($("#inputBonusVIG").val()),
+
 			sentidos: parseInt($("#inputSENT").val()),
+			sentidosBonus: parseInt($("#inputBonusSENT").val()),
+
 			carisma: parseInt($("#inputCAR").val()),
+			carismaBonus: parseInt($("#inputBonusCAR").val()),
+
 			alma: parseInt($("#inputALMA").val()),
 			fe: parseInt($("#inputFE").val()),
 			esforco: parseInt($("#inputESF").val()),
@@ -1010,12 +1077,25 @@ $(document).ready(function () {
 		$("#inputPV").val(response.ptsVidaTotais);
 		$("#inputPVAtual").val(response.ptsVidaAtuais);
 		$("#inputPVTemp").val(response.ptsVidaTemp);
+		
 		$("#inputFOR").val(response.forca);
+		$("#inputBonusFOR").val(response.forcaBonus);		
+		
 		$("#inputDES").val(response.destreza);
+		$("#inputBonusDES").val(response.destrezaBonus);		
+		
 		$("#inputINT").val(response.inteligencia);
+		$("#inputBonusINT").val(response.inteligenciaBonus);		
+		
 		$("#inputVIG").val(response.vigor);
+		$("#inputBonusVIG").val(response.vigorBonus);		
+		
 		$("#inputSENT").val(response.sentidos);
+		$("#inputBonusSENT").val(response.sentidosBonus);		
+		
 		$("#inputCAR").val(response.carisma);
+		$("#inputBonusCAR").val(response.carismaBonus);		
+		
 		$("#inputALMA").val(response.alma);
 		$("#inputFE").val(response.fe);
 		$("#inputESF").val(response.esforco);
