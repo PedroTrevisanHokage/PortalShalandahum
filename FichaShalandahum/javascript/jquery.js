@@ -876,6 +876,7 @@ $(document).ready(function () {
 		var magiasHeroi = new Array();
 		var magia;
 		var adwasHeroi = $("#inputAdwas").val();
+		var anots = $("#txtAnotacoes").val();
 		
 		armadura = {
 			tipo: 1, // armadura
@@ -964,7 +965,8 @@ $(document).ready(function () {
 			armaduras: armadurasHeroi,
 			habilidades: habilidadesHeroi,			
 			itensMisticos: itensMisticosHeroi,
-			magias: magiasHeroi
+			magias: magiasHeroi,
+			anotacoes: anots
 		};
 
 		console.log(objHeroi);
@@ -1019,6 +1021,8 @@ $(document).ready(function () {
 		$("#inputESF").val(response.esforco);
 		$("#txtInventario").val(response.inventario);
 		$("#inputAdwas").val(response.adwas);
+		$("#txtAnotacoes").val(response.anotacoes);
+
 		
 		/*Carregando armaduras (Escudo e Armadura)*/
 		if(response.armaduras.length > 0){
