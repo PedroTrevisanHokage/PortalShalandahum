@@ -931,7 +931,7 @@ $(document).ready(function () {
 			}			
 		}
 
-		for(i=1; i<=5; i++){ //Magias
+		for(i=1; i<=6; i++){ //Magias
 			if($("#inputMagia"+i).val() != ""){
 				magia = {
 					descMagia: $("#inputMagia"+i).val(),
