@@ -1367,29 +1367,31 @@ $(document).ready(function () {
 			}
 		}
 
-		/*Carregando perícias*/
-		$("#inputBonusAcrobacia").val(response.pericias[0].acrobacia);
-		$("#inputBonusAnimais").val(response.pericias[0].animais);
-		$("#inputBonusAtletismo").val(response.pericias[0].atletismo);
-		$("#inputBonusAtuacao").val(response.pericias[0].atuacao);
-		$("#inputBonusDiplomacia").val(response.pericias[0].diplomacia);
-		$("#inputBonusEnganacao").val(response.pericias[0].enganacao);
-		$("#inputBonusEngenharia").val(response.pericias[0].engenharia);
-		$("#inputBonusFurtividade").val(response.pericias[0].furtividade);
-		$("#inputBonusHistoria").val(response.pericias[0].historia);
-		$("#inputBonusIntimidacao").val(response.pericias[0].intimidacao);
-		$("#inputBonusIntuicao").val(response.pericias[0].intuicao);
-		$("#inputBonusInvestigacao").val(response.pericias[0].investigacao);
-		$("#inputBonusMedicina").val(response.pericias[0].medicina);
-		$("#inputBonusArcanismo").val(response.pericias[0].misticismo);
-		$("#inputBonusNatureza").val(response.pericias[0].natureza);
-		$("#inputBonusPersepcao").val(response.pericias[0].persepcao);
-		$("#inputBonusPersuasao").val(response.pericias[0].persuasao);
-		$("#inputBonusPilotagem").val(response.pericias[0].pilotagem);
-		$("#inputBonusReligiao").val(response.pericias[0].religiao);
-		$("#inputBonusSobrevivencia").val(response.pericias[0].sobrevivencia);
-
 		SetarValoresPericiasAposCarregamento();
+
+		/*Carregando perícias*/
+		if(response.pericias.length > 0){
+			$("#inputBonusAcrobacia").val(response.pericias[0].acrobacia);
+			$("#inputBonusAnimais").val(response.pericias[0].animais);
+			$("#inputBonusAtletismo").val(response.pericias[0].atletismo);
+			$("#inputBonusAtuacao").val(response.pericias[0].atuacao);
+			$("#inputBonusDiplomacia").val(response.pericias[0].diplomacia);
+			$("#inputBonusEnganacao").val(response.pericias[0].enganacao);
+			$("#inputBonusEngenharia").val(response.pericias[0].engenharia);
+			$("#inputBonusFurtividade").val(response.pericias[0].furtividade);
+			$("#inputBonusHistoria").val(response.pericias[0].historia);
+			$("#inputBonusIntimidacao").val(response.pericias[0].intimidacao);
+			$("#inputBonusIntuicao").val(response.pericias[0].intuicao);
+			$("#inputBonusInvestigacao").val(response.pericias[0].investigacao);
+			$("#inputBonusMedicina").val(response.pericias[0].medicina);
+			$("#inputBonusArcanismo").val(response.pericias[0].misticismo);
+			$("#inputBonusNatureza").val(response.pericias[0].natureza);
+			$("#inputBonusPersepcao").val(response.pericias[0].persepcao);
+			$("#inputBonusPersuasao").val(response.pericias[0].persuasao);
+			$("#inputBonusPilotagem").val(response.pericias[0].pilotagem);
+			$("#inputBonusReligiao").val(response.pericias[0].religiao);
+			$("#inputBonusSobrevivencia").val(response.pericias[0].sobrevivencia);
+		}
 	}
 
 	function SetarValoresPericiasAposCarregamento(){
