@@ -6,7 +6,9 @@ $(document).ready(function () {
 	AcoesBtnTeste();
 	AtribuirOnChange();
 	AtribuirAcoesCombate();
-	AtribuirAcoesEmBotoes()
+	AtribuirAcoesEmBotoes();
+
+	ChangePericias();
 
 	DesabilitaMinusZerados(); //Essa função tem que ficar sempre por último, pois tem que fazer a verificação somente após retornar todos valores do banco (qdo for implementado)
 	
@@ -67,6 +69,87 @@ $(document).ready(function () {
 		
 		$("#btnSalvarDadosHeroi").click(function () {
 			PrepararDadosHeroi();
+		});
+
+		/*perícias*/
+		$("#btnPerAcro").click(function () {
+			testarPericia("Acrobacia", "DES", $("#inputAcrobacia").val(), $("#inputBonusAcrobacia").val());
+		});
+
+		$("#btnPerAnimais").click(function () {
+			testarPericia("Animais", "CAR", $("#inputAnimais").val(), $("#inputBonusAnimais").val());
+		});
+
+		$("#btnPerAtletismo").click(function () {
+			testarPericia("Atletismo", "FOR", $("#inputAtletismo").val(), $("#inputBonusAtletismo").val());
+		});
+
+		$("#btnPerAtuacao").click(function () {
+			testarPericia("Atuação", "CAR", $("#inputAtuacao").val(), $("#inputBonusAtuacao").val());
+		});
+
+		$("#btnPerDiplomacia").click(function () {
+			testarPericia("Diplomacia", "CAR", $("#inputDiplomacia").val(), $("#inputBonusDiplomacia").val());
+		});
+
+		$("#btnPerEnganacao").click(function () {
+			testarPericia("Enganação", "CAR", $("#inputEnganacao").val(), $("#inputBonusEnganacao").val());
+		});
+
+		$("#btnPerEngenharia").click(function () {
+			testarPericia("Engenharia", "INT", $("#inputEngenharia").val(), $("#inputBonusEngenharia").val());
+		});
+
+		$("#btnPerFurtividade").click(function () {
+			testarPericia("Furtividade", "DES", $("#inputFurtividade").val(), $("#inputBonusFurtividade").val());
+		});
+
+		$("#btnPerHistoria").click(function () {
+			testarPericia("História", "INT", $("#inputHistoria").val(), $("#inputBonusHistoria").val());
+		});
+
+		$("#btnPerIntimidacao").click(function () {
+			testarPericia("Intimidação", "CAR", $("#inputIntimidacao").val(), $("#inputBonusIntimidacao").val());
+		});
+
+		$("#btnPerIntuicao").click(function () {
+			testarPericia("Intuição", "SENT", $("#inputIntuicao").val(), $("#inputBonusIntuicao").val());
+		});
+
+		$("#btnPerInvestigacao").click(function () {
+			testarPericia("Investigação", "SENT", $("#inputInvestigacao").val(), $("#inputBonusInvestigacao").val());
+		});
+
+		$("#btnPerMedicina").click(function () {
+			testarPericia("Medicina", "INT", $("#inputMedicina").val(), $("#inputBonusMedicina").val());
+		});
+
+		$("#btnPerArcanismo").click(function () {
+			testarPericia("Misticismo", "INT", $("#inputArcanismo").val(), $("#inputBonusArcanismo").val());
+		});
+
+		$("#btnPerNatureza").click(function () {
+			testarPericia("Natureza", "INT", $("#inputNatureza").val(), $("#inputBonusNatureza").val());
+		});
+
+		$("#btnPerPersepcao").click(function () {
+			testarPericia("Persepção", "SENT", $("#inputPersepcao").val(), $("#inputBonusPersepcao").val());
+		});
+
+		$("#btnPerPersuasao").click(function () {
+			testarPericia("Persuasão", "CAR", $("#inputPersuasao").val(), $("#inputBonusPersuasao").val());
+		});
+
+		$("#btnPerPilotagem").click(function () {
+			testarPericia("Pilotagem", "DES", $("#inputPilotagem").val(), $("#inputBonusPilotagem").val());
+		});
+
+		$("#btnPerReligiao").click(function () {
+			testarPericia("Religião", "INT", $("#inputReligiao").val(), $("#inputBonusReligiao").val());
+		});
+
+		$("#btnPerSobrevivencia").click(function () {
+			testarPericia("Sobrevivência", "INT", $("#inputSobrevivencia").val(), $("#inputBonusSobrevivencia").val());
 		});
 	}
 		
@@ -212,39 +295,86 @@ $(document).ready(function () {
 		
 	}
 	
+	function ChangePericias(){
+		
+		$(".forca").val('0');
+		$(".dest").val('0');
+		$(".int").val('0');
+		$(".sent").val('0');
+		$(".car").val('0');
+		
+		$("#inputFOR").change(function(){
+			$(".forca").val($("#inputFOR").val());
+		});
+
+		$("#inputDES").change(function(){
+			$(".dest").val($("#inputDES").val());
+		});
+
+		$("#inputINT").change(function(){
+			$(".int").val($("#inputINT").val());
+		});
+
+		$("#inputSENT").change(function(){
+			$(".sent").val($("#inputSENT").val());
+		});
+
+		$("#inputCAR").change(function(){
+			$(".car").val($("#inputCAR").val());
+		});
+	}
+	
 	function AcoesBtnPlusMinus(){
 		$("#btnPlusFor").click(function () {
 			AumentaAtrib("inputFOR", 1);
 			DesabilitaMinusZerados();
+			
+			$(".forca").val($("#inputFOR").val());
 		});
+
 		$("#btnPlusDES").click(function () {
 			AumentaAtrib("inputDES", 1);
 			DesabilitaMinusZerados();
+			
+			$(".dest").val($("#inputDES").val());
 		});
+
 		$("#btnPlusINT").click(function () {
 			AumentaAtrib("inputINT", 1);
 			DesabilitaMinusZerados();
+
+			$(".int").val($("#inputINT").val());
 		});
+
 		$("#btnPlusVIG").click(function () {
 			AumentaAtrib("inputVIG", 1);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnPlusSENT").click(function () {
 			AumentaAtrib("inputSENT", 1);
 			DesabilitaMinusZerados();
+
+			$(".sent").val($("#inputSENT").val());
 		});
+
 		$("#btnPlusCAR").click(function () {
 			AumentaAtrib("inputCAR", 1);
 			DesabilitaMinusZerados();
+
+			$(".car").val($("#inputCAR").val());
 		});	
+
 		$("#btnPlusALMA").click(function () {
 			AumentaAtrib("inputALMA", 2);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnPlusFE").click(function () {
 			AumentaAtrib("inputFE", 2);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnPlusESF").click(function () {
 			AumentaAtrib("inputESF", 3);
 			DesabilitaMinusZerados();
@@ -253,35 +383,53 @@ $(document).ready(function () {
 		$("#btnMinusFor").click(function () {
 			DiminuiAtrib("inputFOR", 1);
 			DesabilitaMinusZerados();
+			
+			$(".forca").val($("#inputFOR").val());
 		});
+
 		$("#btnMinusDES").click(function () {
 			DiminuiAtrib("inputDES", 1);
 			DesabilitaMinusZerados();
+			
+			$(".dest").val($("#inputDES").val());
 		});
+
 		$("#btnMinusINT").click(function () {
 			DiminuiAtrib("inputINT", 1);
 			DesabilitaMinusZerados();
+
+			$(".int").val($("#inputINT").val());
 		});
+
 		$("#btnMinusVIG").click(function () {
 			DiminuiAtrib("inputVIG", 1);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnMinusSENT").click(function () {
 			DiminuiAtrib("inputSENT", 1);
 			DesabilitaMinusZerados();
+
+			$(".sent").val($("#inputSENT").val());
 		});
+
 		$("#btnMinusCAR").click(function () {
 			DiminuiAtrib("inputCAR", 1);
 			DesabilitaMinusZerados();
+
+			$(".car").val($("#inputCAR").val());
 		});
+
 		$("#btnMinusALMA").click(function () {
 			DiminuiAtrib("inputALMA", 2);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnMinusFE").click(function () {
 			DiminuiAtrib("inputFE", 2);
 			DesabilitaMinusZerados();
 		});
+
 		$("#btnMinusESF").click(function () {
 			DiminuiAtrib("inputESF", 3);
 			DesabilitaMinusZerados();
@@ -502,6 +650,34 @@ $(document).ready(function () {
 		}else{
 			$('#inputPV').val("10");			
 		}	
+	}
+	
+	function testarPericia(nome, base, v1, b1){
+		
+		var valor = 0;
+		var bonusPen = 0;
+
+		if(v1 != ""){
+			valor = parseInt(v1);
+		}
+
+		if(b1 != ""){
+			bonusPen = parseInt(b1);
+		}
+		
+		var d10 = rolarD10(false);
+		
+		var total = d10 + valor + bonusPen;
+		
+		var msg = "";
+		if(d10 == 10)
+			msg += "(ACERTO CRÍTICO!) \n";
+		else if (d10 == 1)
+			msg += "(FALHA CRÍTICA!) \n";
+
+		msg += "Total do seu teste de " + nome + ": " + total + " \n(d10: "+d10+" + "+base+": "+valor+" + Bônus/Penalidade: "+bonusPen+")";
+		
+		alert(msg);
 	}
 	
 	function testar(input){
@@ -931,6 +1107,34 @@ $(document).ready(function () {
 		var magia;
 		var adwasHeroi = $("#inputAdwas").val();
 		var anots = $("#txtAnotacoes").val();
+		//variaveis perícias (apenas precisa dos bônus)
+		var periciasHeroi = new Array();
+		var pericias;		
+
+		pericias = {
+			acrobacia: $("#inputBonusAcrobacia").val(),
+			animais: $("#inputBonusAnimais").val(),
+			atletismo: $("#inputBonusAtletismo").val(),
+			atuacao: $("#inputBonusAtuacao").val(),
+			diplomacia: $("#inputBonusDiplomacia").val(),
+			enganacao: $("#inputBonusEnganacao").val(),
+			engenharia: $("#inputBonusEngenharia").val(),
+			furtividade: $("#inputBonusFurtividade").val(),
+			historia: $("#inputBonusHistoria").val(),
+			intimidacao: $("#inputBonusIntimidacao").val(),
+			intuicao: $("#inputBonusIntuicao").val(),
+			investigacao: $("#inputBonusInvestigacao").val(),
+			medicina: $("#inputBonusMedicina").val(),
+			misticismo: $("#inputBonusArcanismo").val(),
+			natureza: $("#inputBonusNatureza").val(),
+			persepcao: $("#inputBonusPersepcao").val(),
+			persuasao: $("#inputBonusPersuasao").val(),
+			pilotagem: $("#inputBonusPilotagem").val(),
+			religiao: $("#inputBonusReligiao").val(),
+			sobrevivencia: $("#inputBonusSobrevivencia").val(),
+		};
+		periciasHeroi.push(pericias);
+
 		
 		armadura = {
 			tipo: 1, // armadura
@@ -1033,7 +1237,9 @@ $(document).ready(function () {
 			habilidades: habilidadesHeroi,			
 			itensMisticos: itensMisticosHeroi,
 			magias: magiasHeroi,
-			anotacoes: anots
+			anotacoes: anots,
+
+			pericias: periciasHeroi 
 		};
 
 		console.log(objHeroi);
@@ -1160,6 +1366,38 @@ $(document).ready(function () {
 				$("#txtInfoMagia"+l).val(response.magias[l-1].infoMagia);
 			}
 		}
+
+		/*Carregando perícias*/
+		$("#inputBonusAcrobacia").val(response.pericias[0].acrobacia);
+		$("#inputBonusAnimais").val(response.pericias[0].animais);
+		$("#inputBonusAtletismo").val(response.pericias[0].atletismo);
+		$("#inputBonusAtuacao").val(response.pericias[0].atuacao);
+		$("#inputBonusDiplomacia").val(response.pericias[0].diplomacia);
+		$("#inputBonusEnganacao").val(response.pericias[0].enganacao);
+		$("#inputBonusEngenharia").val(response.pericias[0].engenharia);
+		$("#inputBonusFurtividade").val(response.pericias[0].furtividade);
+		$("#inputBonusHistoria").val(response.pericias[0].historia);
+		$("#inputBonusIntimidacao").val(response.pericias[0].intimidacao);
+		$("#inputBonusIntuicao").val(response.pericias[0].intuicao);
+		$("#inputBonusInvestigacao").val(response.pericias[0].investigacao);
+		$("#inputBonusMedicina").val(response.pericias[0].medicina);
+		$("#inputBonusArcanismo").val(response.pericias[0].misticismo);
+		$("#inputBonusNatureza").val(response.pericias[0].natureza);
+		$("#inputBonusPersepcao").val(response.pericias[0].persepcao);
+		$("#inputBonusPersuasao").val(response.pericias[0].persuasao);
+		$("#inputBonusPilotagem").val(response.pericias[0].pilotagem);
+		$("#inputBonusReligiao").val(response.pericias[0].religiao);
+		$("#inputBonusSobrevivencia").val(response.pericias[0].sobrevivencia);
+
+		SetarValoresPericiasAposCarregamento();
+	}
+
+	function SetarValoresPericiasAposCarregamento(){
+		$(".forca").val($("#inputFOR").val());
+		$(".dest").val($("#inputDES").val());
+		$(".int").val($("#inputINT").val());
+		$(".sent").val($("#inputSENT").val());
+		$(".car").val($("#inputCAR").val());
 	}
 	
 });
