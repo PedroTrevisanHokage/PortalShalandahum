@@ -1370,7 +1370,7 @@ $(document).ready(function () {
 		SetarValoresPericiasAposCarregamento();
 
 		/*Carregando perícias*/
-		if(response.pericias.length > 0){
+		if(response.pericias){
 			$("#inputBonusAcrobacia").val(response.pericias[0].acrobacia);
 			$("#inputBonusAnimais").val(response.pericias[0].animais);
 			$("#inputBonusAtletismo").val(response.pericias[0].atletismo);
@@ -1391,7 +1391,7 @@ $(document).ready(function () {
 			$("#inputBonusPilotagem").val(response.pericias[0].pilotagem);
 			$("#inputBonusReligiao").val(response.pericias[0].religiao);
 			$("#inputBonusSobrevivencia").val(response.pericias[0].sobrevivencia);
-		}
+		}		
 	}
 
 	function SetarValoresPericiasAposCarregamento(){
