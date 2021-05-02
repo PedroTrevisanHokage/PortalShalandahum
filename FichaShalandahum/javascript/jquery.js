@@ -42,6 +42,16 @@ $(document).ready(function () {
 		return resultadoConsolidado;
 	}
 
+	function RolarQualquerDado(valor){
+		var dado = parseInt(Math.floor(Math.random() * valor));
+		
+		if(dado == 0){
+			dado = valor;
+		}
+
+		return dado;
+	}
+
 	function SetarValoresIniciais(){
 		$('#inputptsDisp').val("20");
 		
@@ -150,6 +160,10 @@ $(document).ready(function () {
 
 		$("#btnPerSobrevivencia").click(function () {
 			testarPericia("Sobrevivência", "INT", $("#inputSobrevivencia").val(), $("#inputBonusSobrevivencia").val());
+		});
+		
+		$("#btnGerarNPC").click(function () {
+			GerarNPC();
 		});
 	}
 		
@@ -304,23 +318,43 @@ $(document).ready(function () {
 		$(".car").val('0');
 		
 		$("#inputFOR").change(function(){
-			$(".forca").val($("#inputFOR").val());
+			SetarValoresPericiasAposCarregamento();
 		});
 
 		$("#inputDES").change(function(){
-			$(".dest").val($("#inputDES").val());
+			SetarValoresPericiasAposCarregamento();
 		});
 
 		$("#inputINT").change(function(){
-			$(".int").val($("#inputINT").val());
+			SetarValoresPericiasAposCarregamento();
 		});
 
 		$("#inputSENT").change(function(){
-			$(".sent").val($("#inputSENT").val());
+			SetarValoresPericiasAposCarregamento();
 		});
 
 		$("#inputCAR").change(function(){
-			$(".car").val($("#inputCAR").val());
+			SetarValoresPericiasAposCarregamento();
+		});
+
+		$("#inputBonusFOR").change(function(){
+			SetarValoresPericiasAposCarregamento();
+		});
+
+		$("#inputBonusDES").change(function(){
+			SetarValoresPericiasAposCarregamento();
+		});
+
+		$("#inputBonusINT").change(function(){
+			SetarValoresPericiasAposCarregamento();
+		});
+
+		$("#inputBonusSENT").change(function(){
+			SetarValoresPericiasAposCarregamento();
+		});
+
+		$("#inputBonusCAR").change(function(){
+			SetarValoresPericiasAposCarregamento();
 		});
 	}
 	
@@ -1273,6 +1307,8 @@ $(document).ready(function () {
 		$("#txtCarregaDados").val("");		
 	}
 
+	
+
 	function CarregarDadosNosCampos(response){
 		
 		/*Carregando os dados básicos*/
@@ -1308,62 +1344,71 @@ $(document).ready(function () {
 		$("#txtInventario").val(response.inventario);
 		$("#inputAdwas").val(response.adwas);
 		$("#txtAnotacoes").val(response.anotacoes);
-
 		
 		/*Carregando armaduras (Escudo e Armadura)*/
-		if(response.armaduras.length > 0){
-			for(i=1; i<=response.armaduras.length; i++){
-				if(response.armaduras[i-1].tipo == 1){
-					$("#inputDescArmad").val(response.armaduras[i-1].descArmadura);
-					$("#inputBloqCCArmad").val(response.armaduras[i-1].blockFisico);
-					$("#inputBloqMIArmad").val(response.armaduras[i-1].blockMistico);
-					$("#inputDurabArmad").val(response.armaduras[i-1].durabilidade);
-					$("#inputPenDesArmad").val(response.armaduras[i-1].penDestreza);
-				}else{
-					$("#inputDescEsc").val(response.armaduras[i-1].descArmadura);
-					$("#inputBloqCCEsc").val(response.armaduras[i-1].blockFisico);
-					$("#inputBloqMIEsq").val(response.armaduras[i-1].blockMistico);
-					$("#inputDurabEsc").val(response.armaduras[i-1].durabilidade);
-					$("#inputPenDesEsc").val(response.armaduras[i-1].penDestreza);
-				}
-			}	
-		}
-
-		/*Carregando armas*/
-		if(response.armas.length > 0){
-			for(j=1; j<=response.armas.length; j++){
-				$("#slcTipoArma"+j).val(response.armas[j-1].tipo);
-				$("#inputDescArma"+j).val(response.armas[j-1].descArma);
-				$("#inputArma"+j+"DAF").val(response.armas[j-1].danoFisico);
-				$("#inputArma"+j+"DAM").val(response.armas[j-1].danoMistico);
-				$("#inputArma"+j+"DU").val(response.armas[j-1].durabilidade);
-
-				DesabilitaBotoesArmaDinamico(j, response.armas[j-1].tipo);
+		if(response.armaduras){
+			if(response.armaduras.length > 0){
+				for(i=1; i<=response.armaduras.length; i++){
+					if(response.armaduras[i-1].tipo == 1){
+						$("#inputDescArmad").val(response.armaduras[i-1].descArmadura);
+						$("#inputBloqCCArmad").val(response.armaduras[i-1].blockFisico);
+						$("#inputBloqMIArmad").val(response.armaduras[i-1].blockMistico);
+						$("#inputDurabArmad").val(response.armaduras[i-1].durabilidade);
+						$("#inputPenDesArmad").val(response.armaduras[i-1].penDestreza);
+					}else{
+						$("#inputDescEsc").val(response.armaduras[i-1].descArmadura);
+						$("#inputBloqCCEsc").val(response.armaduras[i-1].blockFisico);
+						$("#inputBloqMIEsq").val(response.armaduras[i-1].blockMistico);
+						$("#inputDurabEsc").val(response.armaduras[i-1].durabilidade);
+						$("#inputPenDesEsc").val(response.armaduras[i-1].penDestreza);
+					}
+				}	
 			}
 		}
 
+		/*Carregando armas*/
+		if(response.armas){
+			if(response.armas.length > 0){
+				for(j=1; j<=response.armas.length; j++){
+					$("#slcTipoArma"+j).val(response.armas[j-1].tipo);
+					$("#inputDescArma"+j).val(response.armas[j-1].descArma);
+					$("#inputArma"+j+"DAF").val(response.armas[j-1].danoFisico);
+					$("#inputArma"+j+"DAM").val(response.armas[j-1].danoMistico);
+					$("#inputArma"+j+"DU").val(response.armas[j-1].durabilidade);
+	
+					DesabilitaBotoesArmaDinamico(j, response.armas[j-1].tipo);
+				}
+			}
+		}		
+
 		/*Carregando Habilidades*/
-		if(response.habilidades.length > 0){
-			for(k=1; k<=response.habilidades.length; k++){
-				$("#inputDescHab"+k).val(response.habilidades[k-1].descHabilidade);
-				$("#inputNvlHab"+k).val(response.habilidades[k-1].nvlHabilidade);
-				$("#txtHab"+k).val(response.habilidades[k-1].infoHabilidade);
+		if(response.habilidades){
+			if(response.habilidades.length > 0){
+				for(k=1; k<=response.habilidades.length; k++){
+					$("#inputDescHab"+k).val(response.habilidades[k-1].descHabilidade);
+					$("#inputNvlHab"+k).val(response.habilidades[k-1].nvlHabilidade);
+					$("#txtHab"+k).val(response.habilidades[k-1].infoHabilidade);
+				}
 			}
 		}
 		
 		/*Carregando Itens Místicos*/
-		if(response.itensMisticos.length > 0){
-			for(l=1; l<=response.itensMisticos.length; l++){				
-				$("#inputDescItem"+l).val(response.itensMisticos[l-1].descItemMist);
-				$("#inputBonusItem"+l).val(response.itensMisticos[l-1].bonusMist);
+		if(response.itensMisticos){
+			if(response.itensMisticos.length > 0){
+				for(l=1; l<=response.itensMisticos.length; l++){				
+					$("#inputDescItem"+l).val(response.itensMisticos[l-1].descItemMist);
+					$("#inputBonusItem"+l).val(response.itensMisticos[l-1].bonusMist);
+				}
 			}
 		}
 
 		/*Carregando Magias*/
-		if(response.magias.length > 0){
-			for(l=1; l<=response.magias.length; l++){				
-				$("#inputMagia"+l).val(response.magias[l-1].descMagia);
-				$("#txtInfoMagia"+l).val(response.magias[l-1].infoMagia);
+		if(response.magias){
+			if(response.magias.length > 0){
+				for(l=1; l<=response.magias.length; l++){				
+					$("#inputMagia"+l).val(response.magias[l-1].descMagia);
+					$("#txtInfoMagia"+l).val(response.magias[l-1].infoMagia);
+				}
 			}
 		}
 
@@ -1395,11 +1440,327 @@ $(document).ready(function () {
 	}
 
 	function SetarValoresPericiasAposCarregamento(){
-		$(".forca").val($("#inputFOR").val());
-		$(".dest").val($("#inputDES").val());
-		$(".int").val($("#inputINT").val());
-		$(".sent").val($("#inputSENT").val());
-		$(".car").val($("#inputCAR").val());
+		var forca = 0;
+		var dest = 0;
+		var int = 0;
+		var sent = 0;
+		var car = 0;
+		
+		/*Começo do meu TOC*/
+		if($("#inputBonusFOR").val() != "")
+			forca = parseInt($("#inputFOR").val()) + parseInt($("#inputBonusFOR").val());
+		else
+			forca = parseInt($("#inputFOR").val());	
+		
+		if($("#inputBonusDES").val() != "")
+			dest = parseInt($("#inputDES").val()) + parseInt($("#inputBonusDES").val());
+		else
+			dest = parseInt($("#inputDES").val());
+
+		if($("#inputBonusINT").val() != "")
+			int = parseInt($("#inputINT").val()) + parseInt($("#inputBonusINT").val());
+		else
+			int = parseInt($("#inputINT").val());
+
+		if($("#inputBonusSENT").val() != "")
+			sent = parseInt($("#inputSENT").val()) + parseInt($("#inputBonusSENT").val());
+		else
+			sent = parseInt($("#inputSENT").val());
+		
+		if($("#inputBonusCAR").val() != "")
+			car = parseInt($("#inputCAR").val()) + parseInt($("#inputBonusCAR").val());
+		else
+			car = parseInt($("#inputCAR").val());
+
+		/*Fim do meu TOC*/
+		
+		$(".forca").val(forca);
+		$(".dest").val(dest);
+		$(".int").val(int);
+		$(".sent").val(sent);
+		$(".car").val(car);
+	}
+
+	function GerarNPC(){
+		
+		var ptosDisp = 20;
+		var ptosEsf = 0;
+		var userAlmaFe = (rolarD10(false) >= 6) ? "ALMA" : "FE";
+		var ptosFe = 0;
+		var ptosAlma = 0;
+		var ptosFOR = 0;
+		var ptosDES = 0;
+		var ptosVIG = 0;
+		var ptosINT = 0;
+		var ptosSENT = 0;
+		var ptosCAR = 0;
+		var ptosVida = 0;
+
+		var definirEsforco = RolarQualquerDado(4);
+
+		/*Definindo Esforço*/
+		if(definirEsforco == 1){
+			ptosEsf = 1;
+			ptosDisp -= 3;
+		}
+		else if(definirEsforco == 2){
+			ptosEsf = 2;
+			ptosDisp -= 6;
+		}else if(definirEsforco == 3){
+			ptosEsf = 3;
+			ptosDisp -= 6;
+		}else{
+			ptosEsf = 0;
+		}
+
+		while(ptosDisp > 0){
+
+			var opcao = RolarQualquerDado(7);
+
+			if(opcao == 1){ //FORÇA
+				ptosFOR += 1;
+				ptosDisp -= 1;
+
+			}else if(opcao == 2){ // DESTREZA
+				ptosDES += 1;
+				ptosDisp -= 1;
+
+			} else if(opcao == 3){ // INTELIGENCIA
+				ptosINT += 1;
+				ptosDisp -= 1;
+
+			} else if(opcao == 4){ // VIGOR
+				ptosVIG += 1;
+				ptosDisp -= 1;
+				
+			} else if(opcao == 5){ // SENTIDOS
+				ptosSENT += 1;
+				ptosDisp -= 1;
+				
+			} else if(opcao == 6){ // CARISMA
+				ptosCAR += 1;
+				ptosDisp -= 1;
+				
+			} else { // ALMA ou FÉ
+				
+				if(ptosDisp >= 2){
+					if(userAlmaFe == "ALMA"){
+						if(ptosAlma <= 5){
+							ptosAlma += 1;
+							ptosDisp -= 2;
+						}
+					}else{
+						if(ptosFe <= 5){
+							ptosFe += 1;
+							ptosDisp -= 2;
+						}
+					}
+				}				
+			}
+		}
+
+		var etniaAleat = RolarEtniaAleatoria();
+
+		objHeroi = {
+			nome: "NPC",
+			etnia: etniaAleat,
+			classe: "",
+			ptsDisponiveis: 0,
+			ptsVidaTotais: (parseInt(ptosVIG)*10 > 0) ? parseInt(ptosVIG)*10  : 10 ,
+			ptsVidaAtuais: (parseInt(ptosVIG)*10 > 0) ? parseInt(ptosVIG)*10  : 10,
+			ptsVidaTemp: 0,
+			
+			forca: parseInt(ptosFOR),
+			forcaBonus: 0,
+			
+			destreza: parseInt(ptosDES),
+			destrezaBonus: 0,
+
+			inteligencia: parseInt(ptosINT),
+			inteligenciaBonus: 0,
+
+			vigor: parseInt(ptosVIG),
+			vigorBonus: 0,
+
+			sentidos: parseInt(ptosSENT),
+			sentidosBonus: 0,
+
+			carisma: parseInt(ptosCAR),
+			carismaBonus: 0,
+
+			alma: parseInt(ptosAlma),
+			fe: parseInt(ptosFe),
+			esforco: parseInt(ptosEsf),
+			adwas: 0,
+			inventario: null,
+			armas: null,
+			armaduras: null,
+			habilidades: null,			
+			itensMisticos: null,
+			magias: null,
+			anotacoes: null,
+
+			pericias: null 
+		};		
+		
+		var objHeroiFinal = InserirBonusEtnia(objHeroi, etniaAleat);
+		
+		CarregarDadosNosCampos(objHeroiFinal);
+	}	
+
+	function InserirBonusEtnia(objHeroi, etniaAleat){
+		
+		if(etniaAleat == "Humano"){
+			
+			var opcaoH = RolarQualquerDado(6);
+			if(opcaoH == 1){
+				objHeroi.forca += 1;
+			}
+			else if(opcaoH == 2){
+				objHeroi.destreza += 1;		
+			}
+			else if(opcaoH == 3){
+				objHeroi.vigor += 1;			
+			}
+			else if(opcaoH == 4){
+				objHeroi.inteligencia += 1;
+			}
+			else if(opcaoH == 5){
+				objHeroi.sentidos += 1;
+			}
+			else{
+				objHeroi.carisma += 1;
+			}	
+			
+			opcaoH = RolarQualquerDado(2);
+			if(opcaoH == 1){
+				objHeroi.alma += 1;
+			}
+			else{
+				objHeroi.fe += 1;
+			}
+
+			objHeroi.anotacoes = "Deslocamento: 6 Hexágonos\n"+
+								 "Fadiga: Caso não tenha um descanso de 7 horas seguidas, recebe -1 em todas características. Acumulativo por dias não descansados";
+
+		}else if(etniaAleat == "Dakn"){
+
+			var ptosAMais = 2;
+			while(ptosAMais > 0){
+				var opcaoDK = RolarQualquerDado(2);				
+				if(opcaoDK == 1){
+					objHeroi.forca += 1;
+				}
+				else{
+					objHeroi.vigor += 1;
+				}
+				ptosAMais -= 1;
+			}			
+
+			var opcaoDK = RolarQualquerDado(2);
+			if(opcaoDK == 1){
+				objHeroi.alma += 1;
+			}
+			else{
+				objHeroi.fe += 1;
+			}
+
+			objHeroi.anotacoes = "Deslocamento: 6 Hexágonos\n"+
+								 "Penalidade Sob o Sol:Penalidade de -1 em jogadas de Destreza, Inteligência e carisma quando estão sob a luz do dia";
+
+
+		}else if(etniaAleat == "Dakndir"){
+			
+			var ptosAMais = 2;
+			while(ptosAMais > 0){
+				var opcaoDKn = RolarQualquerDado(3);
+				if(opcaoDKn == 1){
+					objHeroi.carisma += 1;
+				}
+				else if(opcaoDKn == 2){
+					objHeroi.inteligencia += 1;
+				}
+				else{
+					objHeroi.destreza += 1;
+				}
+
+				ptosAMais -= 1;
+			}				
+
+			objHeroi.esforco += 1;
+
+			objHeroi.anotacoes = "Penalidade de Força: Penalidade de -1 em jogadas de Força e Vigor";
+			
+		}else if(etniaAleat == "Asghar"){
+			
+			var ptosAMais = 3;
+			while(ptosAMais > 0){
+				var opcaoA = RolarQualquerDado(3);
+				if(opcaoA == 1){
+					objHeroi.vigor += 1;
+				}
+				else if(opcaoA == 2){
+					objHeroi.destreza += 1;
+				}
+				else{
+					objHeroi.inteligencia += 1;
+				}
+
+				ptosAMais -= 1;
+			}
+
+			objHeroi.anotacoes = "Deslocamento: 6 Hexágonos\n"+
+								 "Infiel: Penalidade de -1 em jogadas de Fé ou Alma\n"+
+								 "Trabalhar com Metal: +1 a +5 ao consertar Armas/Armaduras e Mechas, e ao trabalhar com Aço Negro\n"+
+								 "Habilidade Única: Moldar Ferro Negro e Aço Negro";
+			
+		}else if(etniaAleat == "Ashá"){
+			
+			var ptosAMais = 3;
+			while(ptosAMais > 0){
+				var opcaoA = RolarQualquerDado(2);
+				if(opcaoA == 1){
+					objHeroi.destreza += 1;
+				}
+				else{
+					objHeroi.sentidos += 1;
+				}
+
+				ptosAMais -= 1;
+			}
+
+			objHeroi.anotacoes = "Deslocamento: 6 Hexágonos\n"+
+								 "Vôo Ashá: Metade do deslocamento em terra\n"+
+								 "Carisma Baixo: Penalidade de 1 em jogadas de Carisma \n"+
+								 "Visão Aguçada: Bônus +1 em testes de Sentido para Visão\n"+
+								 "Rancor: Ashás guardam imenso rancor dos 'filhos da deusa' qualquer membro da igreja torna-se um inimigo natural para esta raça. Teste de Sentidos (Vontade) pra não atacar imediatamente um devoto de Laien";
+		}
+
+		return objHeroi;
+	}
+	
+	
+	function RolarEtniaAleatoria(){
+		var opcao = RolarQualquerDado(5);
+		var retorno = "";
+
+		if(opcao == 1){ //HUMANO
+			retorno = "Humano";
+
+		}else if(opcao == 2){ // DAKN
+			retorno = "Dakn";
+
+		} else if(opcao == 3){ // DAKNDIR
+			retorno = "Dakndir";
+
+		} else if(opcao == 4){ // ASGHAR  
+			retorno = "Asghar";
+			
+		} else{ // ASHA
+			retorno = "Ashá";
+		}
+
+		return retorno;
 	}
 	
 });
