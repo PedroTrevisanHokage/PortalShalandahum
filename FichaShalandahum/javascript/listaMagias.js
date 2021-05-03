@@ -19,14 +19,70 @@ $(document).ready(function () {
     CriaBotoesLuz();
     CriaBotoesVazio();
 
+    // AtribuirAcaoBotao();
 
+    // function AtribuirAcaoBotao(){
+    //     $(".tempo").click(function () {
+    //         console.log(this.id);
+    //         ExibeMagiaTempo(this.id, "TEMPO");
+    //     });
+        
+    //     $(".elemental").click(function () {
+	// 		ExibeMagiaTempo(this.id, "ELEMENTAL");
+    //     });
+        
+    //     $(".luz").click(function () {
+	// 		ExibeMagiaTempo(this.id, "LUZ");
+    //     });
+        
+    //     $(".vazio").click(function () {
+	// 		ExibeMagiaTempo(this.id, "VAZIO");
+    //     });       
+
+    // }
+    
+    function ExibeMagiaTempo(idMagia, escola){
+        
+        console.log(idMagia);
+        var obj;
+
+        if(escola == 'TEMPO'){
+            obj = objMagias.MagiasTempo.find(function(_obj){
+                return _obj.id == idMagia;
+            });
+        }else if(escola == 'ELEMENTAL'){
+            obj = objMagias.MagiasElemental.find(function(_obj){
+                return _obj.id == idMagia;
+            });
+        }else if(escola == 'LUZ'){
+            obj = objMagias.MagiasLuz.find(function(_obj){
+                return _obj.id == idMagia;
+            });
+        }else if(escola == 'VAZIO'){
+            obj = objMagias.MagiasVazio.find(function(_obj){
+                return _obj.id == idMagia;
+            });
+        }
+
+        $("#inputNomeMagia").val(obj.nome);
+        $("#inputTipoMagia").val(obj.tipo);
+        $("#inputTempoConj").val(obj.tempoConj);
+        $("#inputAlcance").val(obj.alcance);
+        $("#inputCustoMin").val(obj.custoMin);
+        $("#inputDuracao").val(obj.duracao);
+        $("#txtDetalhesMagia").val(obj.detalhes);
+
+        $("#modalDadosMagia").modal('show');
+    }
+    
+    
     function CriaBotoesTempo(){
 
         var inner = "";
         objMagias.MagiasTempo.forEach(element => {
             
-            inner = '<div class="input-group-prepend botaoMagia" >'+
-                    '   <button type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
+            inner = '<div class="input-group-prepend botaoMagia tempo" >'+
+                    '   <button onclick="ExibeMagiaTempo('+element.id+',\'TEMPO\')" type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
@@ -39,7 +95,7 @@ $(document).ready(function () {
         var inner = "";
         objMagias.MagiasElemental.forEach(element => {
             
-            inner = '<div class="input-group-prepend botaoMagia" >'+
+            inner = '<div class="input-group-prepend botaoMagia elemental" >'+
                     '   <button type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
@@ -53,7 +109,7 @@ $(document).ready(function () {
         var inner = "";
         objMagias.MagiasLuz.forEach(element => {
             
-            inner = '<div class="input-group-prepend botaoMagia" >'+
+            inner = '<div class="input-group-prepend botaoMagia luz" >'+
                     '   <button type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
@@ -67,12 +123,12 @@ $(document).ready(function () {
         var inner = "";
         objMagias.MagiasVazio.forEach(element => {
             
-            inner = '<div class="input-group-prepend botaoMagia" >'+
+            inner = '<div class="input-group-prepend botaoMagia vazio" >'+
                     '   <button type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
-                    $("#divMagiasVazio").html($("#divMagiasVazio").html() + inner);
+            $("#divMagiasVazio").html($("#divMagiasVazio").html() + inner);
         });
     }
     
