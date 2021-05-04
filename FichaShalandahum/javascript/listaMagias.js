@@ -80,7 +80,7 @@ $(document).ready(function () {
         objMagias.MagiasTempo.forEach(element => {
             
             inner = '<div id="'+element.id+'" class="input-group-prepend botaoMagia tempo" >'+
-                    '   <button type="button" id="'+element.id+'" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
+                    '   <button type="button" id="'+element.id+'" class="btn btn-warning btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
@@ -94,7 +94,7 @@ $(document).ready(function () {
         objMagias.MagiasElemental.forEach(element => {
             
             inner = '<div id="'+element.id+'" class="input-group-prepend botaoMagia elemental" >'+
-                    '   <button type="button" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
+                    '   <button type="button" class="btn btn-success btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
@@ -108,7 +108,7 @@ $(document).ready(function () {
         objMagias.MagiasLuz.forEach(element => {
             
             inner = '<div id="'+element.id+'" class="input-group-prepend botaoMagia luz" >'+
-                    '   <button type="button" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
+                    '   <button type="button" class="btn btn-secondary btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
@@ -122,7 +122,7 @@ $(document).ready(function () {
         objMagias.MagiasVazio.forEach(element => {
             
             inner = '<div id="'+element.id+'" class="input-group-prepend botaoMagia vazio" >'+
-                    '   <button type="button" class="btn btn-primary btn-sm btn-block ">'+element.nome+'</button>'+
+                    '   <button type="button" class="btn btn-dark btn-sm btn-block ">'+element.nome+'</button>'+
                     '</div>';
 
             
@@ -398,12 +398,12 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "ABENÇOAR ALIMENTO/LÍQUIDO",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "1 ação ",
+            alcance: "Toque",
+            duracao: "Instantânea",
+            custoMin: "1 fé por kg de alimento / lt de água",
+            tipo: "Divina",
+            detalhes: "Essa magia torna puro e não estragado qualquer alimento que o conjurador toque, também torna água limpida e potável, ademais livra o alimento, ou líquido, de qualquer veneno."
         }
         magiasLuz.push(magia);
         
@@ -411,12 +411,13 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "ESPADA DE LAIEN",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação",
+            alcance: "Arma Empunhada",
+            duracao: "Acaba Após Ataque (acertando ou não)",
+            custoMin: "1 Fé",
+            tipo: "Buff, Divina",
+            detalhes: "Não pode ser feita por usuário sem crença.\n"+
+					  "Arma empunhada emana aura de luz, ataques podem ser considerados místicos e devem ser defendidos com Defesa Mística, arma gera dano extra de acordo com Fé gasta x2"
         }
         magiasLuz.push(magia);
         
@@ -424,12 +425,13 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "JUSTIÇA DE LAIEN",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação",
+            alcance: "Longo",
+            duracao: "qtd fé gasta (sem x2) em turnos",
+            custoMin: "1 Fé",
+            tipo: "Divina",
+            detalhes: 	"Não pode ser feita por usuário sem crença.\n"+
+						"Pessoas no alcance devem fazer teste místico para mentir. A dificuldade do teste é 5 + (qtd fé gasta x2)"
         }
         magiasLuz.push(magia);
        
@@ -437,12 +439,13 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "LUZ DE LAIEN",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação + Movimento",
+            alcance: "Curto",
+            duracao: "qtd fé gasta (sem x2) em turnos",
+            custoMin: "1 Fé",
+            tipo: "Divina",
+            detalhes: 	"Não pode ser feita por usuário sem crença.\n"+
+						"Clarão de luz invade o espaço. Alvos crença nula, ou diferente de Laien, devem fazer teste místico ou ficam cegos por tempo baseado na qtd de fé gasta"
         }
         magiasLuz.push(magia);
         
@@ -450,12 +453,12 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "MENSAGEM",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "1 ação",
+            alcance: "Curto, 1 alvo",
+            duracao: "Instantânea",
+            custoMin: "3 Fé",
+            tipo: " Genérica, Fé",
+            detalhes: "O conjurador passa uma frase simples em seu pensamento direto ao pensamento de um único alvo dentro de um raio de 5 hexágonos"
         }
         magiasLuz.push(magia);
         
@@ -463,12 +466,14 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "PRESENÇA DE LAIEN",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação + Movimento",
+            alcance: "Curto",
+            duracao: "qtd fé gasta (sem x2) em turnos",
+            custoMin: "1 Fé",
+            tipo: "Divina",
+            detalhes: 	"Não pode ser feita por usuário sem crença.\n"+
+						"O usuário do milagre irradia uma aura de luz durante o turno, os alvos dentro do alcance com crença nula, ou diferente de Laien, devem fazer um teste oposto ou ficarão em estado de choque e paralisados.\n"+
+						"A dificuldade do teste é 5 + (qtd fé gasta x2)"
         }
         magiasLuz.push(magia);
         
@@ -476,12 +481,13 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "RAIO PRISMÁTICO",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "1 ação + movimento",
+            alcance: "Curto",
+            duracao: "Instantânea",
+            custoMin: "2 Fé",
+            tipo: "Divina, Fé",
+            detalhes: 	"Um feixe prismático de luz, começando de você até 3 hexágonos em linha reta, é criado. Todos, aliados ou inimigos, que estiverem no caminho do feixe tomarão dano místico e devem defender em suas Defesas Místicas (Passiva ou Ativa a depender de como estão posicionados)\n"+
+						"(Utilize a regra normal de Ataque Místico para calcular o dano)"
         }
         magiasLuz.push(magia);
         
@@ -489,12 +495,12 @@ $(document).ready(function () {
             id: 1,
             escola: "LUZ",
             nome: "VISÃO VERDADEIRA",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação",
+            alcance: "Toque ou Pessoal",
+            duracao: "10 minutos",
+            custoMin: "3 Fé",
+            tipo: "Divina, Alma",
+            detalhes: "Você consegue enxergar em escuridão ou clarão mágicos em um raio igual a alma/fé gasta x2"
         }
         magiasLuz.push(magia);
 
@@ -514,12 +520,26 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "AMALDIÇOAR",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "ação + movimento",
+            alcance: "Curto, 1 alvo",
+            duracao: "Instântânea",
+            custoMin: "veja a descrição",
+            tipo: "Divina, Maldição",
+            detalhes: 	"O alvo deve fazer um teste místico, caso bem sucedido nada ocorre com o alvo, caso contrário é imposto um Status Negativo a seu alvo. Cada status tem um custo em Alma/Fé. Veja lista abaixo\n"+
+						"(Para determinar a CD do teste místico use 1d10 + (fé gasta x2) + Bônus Místicos Aplicáveis)\n"+
+						"\n"+
+						"Amedrontado: mínimo 3 alma/fé (não acumulativo);\n"+
+						"Cego: mínimo 3 alma/fé (não acumulativo);\n"+
+						"Fissurado: mínimo 3 alma/fé (não acumulativo);\n"+
+						"Ofuscado: mínimo 3 alma/fé (não acumulativo);\n"+
+						"Surdo: mínimo 3 alma/fé (não acumulativo);\n"+
+						"Exausto: Veja os custos abaixo. Você não pode impor o 2º nível de exaustão sem o alvo passar pelo 1º (essa regra vale para os demais também):\n"+
+						"	- mínimo 2 alma/fé para o 1º nível de exaustão,\n"+ 
+						"	- mínimo 4 alma/fé para o 2º nível de exaustão,\n"+ 
+						"	- mínimo 6 alma/fé para o 3º nível de exaustão,\n"+ 
+						"	- mínimo 8 alma/fé para o 4º nível de exaustão,\n"+ 
+						"	- mínimo 10 alma/fé para o 5º nível de exaustão,\n"+ 
+						"	- mínimo 12 alma/fé para o 6º nível de exaustão."
         }
         magiasVazio.push(magia);
         
@@ -527,12 +547,15 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "CANCELAR MAGIA",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "1 Esforço",
+            alcance: " Longo, 1 alvo",
+            duracao: "Instântânea",
+            custoMin: "veja a descrição",
+            tipo: "Genérica",
+            detalhes: 	"O conjurador precisa ver o alvo castar uma magia\n"+
+						"Essa magia deve ser usada fora do seu turno, para tal necessita-se gastar um esforço para realizar uma ação fora de seu turno.\n"+
+						"No momento em que o alvo fizer uma magia você pode gastar uma quantidade de alma/fé que você acha que seja igual ou superior à alma/fé que o alvo está utilizando, então a magia do alvo é cancelada"
+
         }
         magiasVazio.push(magia);
         
@@ -540,12 +563,17 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "IMAGEM ILUSÓRIA",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "1 ação",
+            alcance: "Curto",
+            duracao: "1 minuto",
+            custoMin: "3 alma",
+            tipo: "Genérica, Alma",
+            detalhes: 	"Uma imagem de algo ou alguém é criado no local dentro do alcance da magia.\n"+
+						"A imagem é intangível, não se mexe, não produz qualquer sombra\n"+
+						"A imagem criada não é maior que um humanóide médio\n"+
+						"\n"+
+						"Você pode gastar 1 alma a mais para que a imagem emita som (o som se repetirá pela duração da magia)"
+
         }
         magiasVazio.push(magia);
         
@@ -553,12 +581,20 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "MOMENTO DE INSANIDADE",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação + Movimento",
+            alcance: "Curto",
+            duracao: "Ler Descrição",
+            custoMin: "5 alma/fé",
+            tipo: "Genérica",
+            detalhes: 	"O conjurador deve manter concentração nessa magia (não poderá fazer outra magia q exija concentração). \n"+
+						"(Caso o cater receba dano de qualquer tipo faça um teste de SENT CD 10 para manter a concentração.)\n"+
+						"O conjurador escolhe um alvo em um raio de 3 hexágonos (gastar esforço não pode aumentar o número de alvos).\n"+
+						"O Alvo deve ser bem sucedido em um teste místico oposto ao seu (CD = 5 + (alma/fé gasta x2)), porém o alvo pode escolher falhar no teste.\n"+
+						"Caso o alvo não obtenha sucesso aplique os pontos abaixo a ele:\n"+
+						"	- Durante um número de rodadas igual a qtd de alma/fé gasta (ou até o conjurador perder a concentração), o alvo usa 1d10 a mais em seus ataques\n"+
+						"	- O Alvo deve usar uma ação de seu turno para atacar, porém rolará 1d10, em resultados pares ataca um aliado, em ímpares um inimigo. Caso não consiga alcançar ningupem para atacar, deve realizar um ataque contra si mesmo (considere 0 um número par)\n"+
+						"	- No começo de cada um dos turnos do alvo, ele pode gastar 1 ESF para cancelar os efeitos da magia naquele turno."
+
         }
         magiasVazio.push(magia);
         
@@ -566,12 +602,15 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "SUSSURROS DISSONANTES",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação",
+            alcance: "Curto",
+            duracao: "Fim do Turno do Alvo",
+            custoMin: "5 alma/fé",
+            tipo: "Divina, Alma",
+            detalhes: 	"Alvo deve fazer um teste oposto, em caso de falha fica atordoado até o fim do turno dele.\n"+
+						"Atordoado = Movimentação cai para metade, penalidade em ações que exigem lance de dado. \n"+
+						"Dificuldade do teste é 5 + (Alma/fé gasta x2)"
+
         }
         magiasVazio.push(magia);
         
@@ -579,12 +618,12 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "SUSPIRO DE VIDA",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação",
+            alcance: "Toque ou Pessoal",
+            duracao: "Cena ou até vida extra ser consumida",
+            custoMin: "1 alma/fé",
+            tipo: "Divina, Alma",
+            detalhes: "Você toca em uma pessoa (ou em você mesmo), essa magia concederá  vida temporária igual a quantidade de alma/fé utilizada x2 (regras gerais de magia). Caso haja dano, essa reserva deve ser consumida primeiramente"
         }
         magiasVazio.push(magia);
         
@@ -592,12 +631,12 @@ $(document).ready(function () {
             id: 1,
             escola: "VAZIO",
             nome: "ZONA ESCURA",
-            tempoConj: "",
-            alcance: "",
-            duracao: "",
-            custoMin: "",
-            tipo: "",
-            detalhes: ""
+            tempoConj: "Ação + Movimento",
+            alcance: "Longo (raio)",
+            duracao: "qtd fé gasta (sem x2) em turnos",
+            custoMin: "3 alma/fé",
+            tipo: "Genérica",
+            detalhes: "Uma névoa paira no ar, escorre como fumaça alastrando-se em corredores e frestas conforme seu raio de ação, essa fumaça concede escuridão mágica. (Visão no Escuro comum não enxerga aqui). contudo se um ser com aura mágica entra no local da magia ele pode ser visto."
         }
         magiasVazio.push(magia);
 
