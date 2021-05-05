@@ -1508,7 +1508,7 @@ $(document).ready(function () {
 			ptosDisp -= 6;
 		}else if(definirEsforco == 3){
 			ptosEsf = 3;
-			ptosDisp -= 6;
+			ptosDisp -= 9;
 		}else{
 			ptosEsf = 0;
 		}
