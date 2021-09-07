@@ -1,0 +1,24 @@
+{
+  "name": "portalshalandahum",
+  "version": "1.0.0",
+  "description": "Projeto para Ficha de Jogador para Shalandahum RPG",
+  "main": "FichaShalandahum/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node FichaShalandahum/server.js" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroTrevisanHokage/PortalShalandahum.git"
+  },
+  "author": "Pedro Trevisan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroTrevisanHokage/PortalShalandahum/issues"
+  },
+  "homepage": "https://github.com/PedroTrevisanHokage/PortalShalandahum#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
